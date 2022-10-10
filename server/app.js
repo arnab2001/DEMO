@@ -9,14 +9,7 @@ const bodyparser = require("body-parser");
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.DB_CONNECT, {})
-  .then(() => console.log("Database connected!"))
-  .catch((err) => console.log(err));
 
-app.use(express.json());
-app.use(bodyparser.json());
-app.use(cors());
 
 
 app.use(express.urlencoded({ extended: false }));
@@ -29,3 +22,12 @@ app.use("/", Routes);
 app.listen(PORT, () => {
   console.log("server started and running on port 4002");
 });
+
+mongoose
+  .connect(process.env.DB_CONNECT, {})
+  .then(() => console.log("Database connected!"))
+  .catch((err) => console.log(err));
+
+app.use(express.json());
+app.use(bodyparser.json());
+app.use(cors());
